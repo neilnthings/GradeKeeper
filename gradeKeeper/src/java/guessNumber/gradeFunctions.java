@@ -210,6 +210,8 @@ public class gradeFunctions implements Serializable {
         String insertQuery = "insert into " + courseNameInput + " values ('"
                 + courseNameInput + "', '" + workNameInput + "', " + earnedPointsInput + ", " + maxPointsInput + ")";
 
+        System.out.println(insertQuery);
+        
         try {
             selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                     ResultSet.CONCUR_READ_ONLY);
@@ -237,6 +239,38 @@ public class gradeFunctions implements Serializable {
         }
     }
 
+        public void deleteClassWork() throws SQLException {
+        String deleteQuery = "delete from " + courseNameInput + " where hw_name = '" + workNameInput + "'";
+
+        System.out.println(deleteQuery);
+        
+        try {
+            selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                    ResultSet.CONCUR_READ_ONLY);
+
+            rs = selectStmt.executeQuery(deleteQuery);
+
+            rs.close();
+        } catch (SQLException sqle) {
+            System.out.println("Error Msg: " + sqle.getMessage());
+            System.out.println("SQLState: " + sqle.getSQLState());
+            System.out.println("SQLError: " + sqle.getErrorCode());
+            System.out.println("Rollback the transaction and quit the program");
+            System.out.println();
+            try {
+                conn.setAutoCommit(false);
+            } catch (java.sql.SQLException e) {
+                System.exit(-1);
+            }
+            try {
+                conn.rollback();
+            } catch (SQLException e) {
+
+            }
+            System.exit(1);
+        }
+    }
+    
     public void createNewClass() throws SQLException {
         String insertQuery = "insert into courses values ('" + newClass + "')";
         String createQuery = "create table " + newClass + " (class_name varchar(25), hw_name varchar(50), earned_points number, max_points number, foreign key (class_name) references courses(class_name))";
