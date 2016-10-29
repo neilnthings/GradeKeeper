@@ -5,6 +5,7 @@
  */
 package guessNumber;
 
+import guessNumber.model.ClassWork;
 import guessNumber.model.CourseInfo;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -151,8 +152,6 @@ public class gradeFunctions implements Serializable {
      * @throws SQLException
      */
     public List<CourseInfo> getCourseList() throws SQLException {
-        System.out.println("ALPHA");
-
         String query = "select class_name from courses order by class_name";
 
         selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
@@ -163,17 +162,41 @@ public class gradeFunctions implements Serializable {
 
         List<CourseInfo> list = new ArrayList<CourseInfo>();
 
-        System.out.println("BRAVO");
-
-//        if (!result.next()) {
-//            System.out.println("EMPTY SET");
-//        }
         while (result.next()) {
-            System.out.print("charlie");
-
             CourseInfo dbinfo = new CourseInfo();
 
             dbinfo.setCourseName(result.getString(1));
+
+            //store all data into a List
+            list.add(dbinfo);
+        }
+
+        return list;
+    }
+
+    /**
+     * Creates a list of Class Work Information
+     *
+     * @return
+     * @throws SQLException
+     */
+    public List<ClassWork> getClassWorkList() throws SQLException {
+        String query = "select hw_name, earned_points, max_points from " + courseNameInput + " order by hw_name";
+
+        selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                ResultSet.CONCUR_READ_ONLY);
+
+        //get customer data from database
+        ResultSet result = selectStmt.executeQuery(query);
+
+        List<ClassWork> list = new ArrayList<ClassWork>();
+
+        while (result.next()) {
+            ClassWork dbinfo = new ClassWork();
+
+            dbinfo.setClassName(result.getString(1));
+            dbinfo.setEarnedPoints(result.getFloat(2));
+            dbinfo.setMaxPoints(result.getFloat(3));
 
             //store all data into a List
             list.add(dbinfo);
