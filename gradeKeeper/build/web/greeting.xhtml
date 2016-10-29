@@ -8,70 +8,95 @@
 
         <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
         <!--<h:outputStylesheet name="css/stylesheet.css" />-->
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arvo" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
 
         <title>Greeting</title>
     </head>
 
-    <body>
-        <div id="mainContainer">
+    <body style="background: url('bg2.jpg') no-repeat center center fixed; background-size: cover; font-family: 'Roboto', serif;">
+        <div style="background-color: rgba(255,255,255,0.7);">
+            <div class="ui container" id="mainContainer" style="margin-top: 10%;">
 
-            <div>
+                <div style="padding-top: 20px;">
 
-                <h1>Grade Keeper</h1>
+                    <h1 style="font-family: 'Arvo', serif; font-size: 48px;">Grade Keeper</h1>
 
-                <h4>Your current grades are:</h4>
+                    <h4 style="font-family: 'Roboto', serif;">Your current grades are:</h4>
 
-                <br></br>
+                    <br></br>
+
+                </div>
 
             </div>
-
-        </div>
-
-        <h2>Classes</h2>
-        <h:dataTable value="#{gradeFunctions.getCourseList()}" var="c"
-                     styleClass="order-table"
-                     headerClass="order-table-header"
-                     rowClasses="order-table-odd-row,order-table-even-row"
-                     >
             
-            <h:column>
-                <f:facet name="header">Class</f:facet>
-                    #{c.courseName}
-            </h:column>
+            <div class="ui grid">
+                <div class="four wide column"></div>
+                <div class="eight wide column">
+                    <h:dataTable value="#{gradeFunctions.getCourseList()}" var="c"
+                                 styleClass="ui celled table"
+                                 headerClass="order-table-header"
+                                 rowClasses="order-table-odd-row,order-table-even-row"
+                                 >
 
-            <h:column>
-                <f:facet name="header">Grade</f:facet>
-                    100.00
-            </h:column>
+                        <h:column>
+                            <f:facet name="header">Class</f:facet>
+                                #{c.courseName}
+                        </h:column>
 
-        </h:dataTable>
+                        <h:column>
+                            <f:facet name="header">Grade</f:facet>
+                            100.00
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <div class="four wide column"></div>
+            </div>
 
-        <br></br>
+            <div class="ui centered grid" style="margin: 20px 0;">
+                <h:column>
+                    <h:form>
+                        <div class="two wide column"></div>
+                        <div class="ui huge input">
+                            <h:inputText class="six wide column" id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}"
+                                         style="text-align: center; margin: 0 20px;" />
+                        </div>
+                        <h:commandButton class="six wide column" id="submit" value="EDIT CLASS" action="editClass" />
+                        <div class="two wide column"></div>
+                    </h:form>
+                </h:column>
+            </div>
 
-        <h:column>
-            <h:form>
-                <h:inputText id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}" />
-                <h:commandButton id="submit" value="EDIT CLASS" action="editClass" />
-            </h:form>
-        </h:column>
+            <div class="ui centered grid" style="margin: 20px 0;">
+                <h:column>
+                    <h:form>
+                        <div class="two wide column"></div>
+                        <div class="ui huge input">
+                            <h:inputText class="six wide column" id="newClass" size="20" maxlength="20" value="#{gradeFunctions.newClass}"
+                                         style="text-align: center; margin: 0 20px;"/>
+                        </div>
+                        <h:commandButton class="six wide column" value="ADD CLASS" action="#{gradeFunctions.createNewClass()}" />
+                        <div class="two wide column"></div>
+                    </h:form>
+                </h:column>
+            </div>
 
-        <br></br>
-
-        <h:column>
-            <h:form>
-                <h:inputText id="newClass" size="20" maxlength="20" value="#{gradeFunctions.newClass}" />
-                <h:commandButton value="ADD CLASS" action="#{gradeFunctions.createNewClass()}" />
-            </h:form>
-        </h:column>
-
-        <br></br>
-
-        <h:column>
-            <h:form>
-                <h:inputText id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}" />
-                <h:commandButton value="DELETE CLASS" action="#{gradeFunctions.deleteClass()}" />
-            </h:form>
-        </h:column>
-
+            <div class="ui centered grid" style="margin: 20px 0; padding-bottom: 30px;">
+                <h:column>
+                    <h:form>
+                        <div class="two wide column"></div>
+                        <div class="ui huge input">
+                            <h:inputText class="six wide column" id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}"
+                                         style="text-align: center; margin: 0 20px;"/>
+                        </div>
+                        <h:commandButton class="six wide column" value="DELETE CLASS" action="#{gradeFunctions.deleteClass()}" />
+                        <div class="two wide column"></div>
+                    </h:form>
+                </h:column>
+            </div>
+        </div>
     </body>
 </html>
