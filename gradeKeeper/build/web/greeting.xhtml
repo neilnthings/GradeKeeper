@@ -51,7 +51,7 @@
         <h:column>
             <h:form>
                 <h:inputText id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}" />
-                <h:commandButton id="submit" value="EDIT A CLASS" action="editClass" />
+                <h:commandButton id="submit" value="EDIT CLASS" action="editClass" />
             </h:form>
         </h:column>
 
@@ -60,7 +60,16 @@
         <h:column>
             <h:form>
                 <h:inputText id="newClass" size="20" maxlength="20" value="#{gradeFunctions.newClass}" />
-                <h:commandButton value="ADD A CLASS" action="#{gradeFunctions.createNewClass()}" />
+                <h:commandButton value="ADD CLASS" action="#{gradeFunctions.createNewClass()}" />
+            </h:form>
+        </h:column>
+
+        <br></br>
+
+        <h:column>
+            <h:form>
+                <h:inputText id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}" />
+                <h:commandButton value="DELETE CLASS" action="#{gradeFunctions.deleteClass()}" />
             </h:form>
         </h:column>
 
