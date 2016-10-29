@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+        <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+        <!--<h:outputStylesheet name="css/stylesheet.css" />-->
+
+        <title>Greeting</title>
+    </head>
+
+    <body>
+        <div id="mainContainer">
+
+            <div>
+
+                <h1>Grade Keeper</h1>
+
+                <h4>Your current grades are:</h4>
+
+                <br></br>
+
+            </div>
+
+        </div>
+
+        <h2>Classes</h2>
+        <h:dataTable value="#{gradeFunctions.getCourseList()}" var="c"
+                     styleClass="order-table"
+                     headerClass="order-table-header"
+                     rowClasses="order-table-odd-row,order-table-even-row"
+                     >
+            
+            <h:column>
+                <f:facet name="header">Class</f:facet>
+                    #{c.courseName}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Grade</f:facet>
+                    100.00
+            </h:column>
+
+        </h:dataTable>
+
+        <br></br>
+
+        <h:column>
+            <h:form>
+                <h:inputText id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}" />
+                <h:commandButton id="submit" value="EDIT A CLASS" action="editClass" />
+            </h:form>
+        </h:column>
+
+        <br></br>
+
+        <h:column>
+            <h:form>
+                <h:inputText id="newClass" size="20" maxlength="20" value="#{gradeFunctions.newClass}" />
+                <h:commandButton value="ADD A CLASS" action="greeting" />
+            </h:form>
+        </h:column>
+
+    </body>
+</html>
