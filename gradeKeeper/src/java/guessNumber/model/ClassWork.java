@@ -11,16 +11,16 @@ package guessNumber.model;
  */
 public class ClassWork {
 
-    public String className;
+    public String workName;
     float earnedPoints;
     float maxPoints;
 
-    public String getClassName() {
-        return className;
+    public String getWorkName() {
+        return workName;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setWorkName(String workName) {
+        this.workName = workName;
     }
 
     public float getEarnedPoints() {

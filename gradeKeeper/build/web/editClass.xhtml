@@ -29,7 +29,7 @@
 
                     <h:column>
                         <f:facet name="header">Name</f:facet>
-                            #{c.className}
+                            #{c.workName}
                     </h:column>
 
                     <h:column>
@@ -48,10 +48,10 @@
 
                 <h:column>
                     <h:form>
-                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.classNameInput}" />
+                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
                         <h:inputText id="earnedPoints" size="20" maxlength="20" value="#{gradeFunctions.earnedPointsInput}" />
                         <h:inputText id="maxPoints" size="20" maxlength="20" value="#{gradeFunctions.maxPointsInput}" />
-                        <h:commandButton id="submit" value="ADD CLASSWORK" action="editClass" />
+                        <h:commandButton id="submit" value="ADD CLASSWORK" action="#{gradeFunctions.insertClassWork()}" />
                     </h:form>
                 </h:column>
 

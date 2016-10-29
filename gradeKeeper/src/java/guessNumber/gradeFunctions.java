@@ -28,10 +28,11 @@ public class gradeFunctions implements Serializable {
 
     String courseNameInput;
     String newClass;
-    String classNameInput;
+    String workNameInput;
     float earnedPointsInput;
     float maxPointsInput;
     private static Statement selectStmt;
+    private static ResultSet rs;
     private static Connection conn;
 
     /**
@@ -59,12 +60,12 @@ public class gradeFunctions implements Serializable {
         this.newClass = newClass;
     }
 
-    public String getClassNameInput() {
-        return classNameInput;
+    public String getWorkNameInput() {
+        return workNameInput;
     }
 
-    public void setClassNameInput(String classNameInput) {
-        this.classNameInput = classNameInput;
+    public void setWorkNameInput(String workNameInput) {
+        this.workNameInput = workNameInput;
     }
 
     public float getEarnedPointsInput() {
@@ -146,7 +147,7 @@ public class gradeFunctions implements Serializable {
     }
 
     /**
-     * Creates a list of Attempts
+     * Creates a list of Courses
      *
      * @return
      * @throws SQLException
@@ -194,7 +195,7 @@ public class gradeFunctions implements Serializable {
         while (result.next()) {
             ClassWork dbinfo = new ClassWork();
 
-            dbinfo.setClassName(result.getString(1));
+            dbinfo.setWorkName(result.getString(1));
             dbinfo.setEarnedPoints(result.getFloat(2));
             dbinfo.setMaxPoints(result.getFloat(3));
 
@@ -203,5 +204,38 @@ public class gradeFunctions implements Serializable {
         }
 
         return list;
+    }
+
+    public void insertClassWork() throws SQLException {
+        String insertQuery = "insert into " + courseNameInput + " values ('"
+                + workNameInput + "', " + earnedPointsInput + ", " + maxPointsInput + ")";
+        
+        System.out.println(insertQuery);
+        
+        try {
+            selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                    ResultSet.CONCUR_READ_ONLY);
+
+            rs = selectStmt.executeQuery(insertQuery);
+
+            rs.close();
+        } catch (SQLException sqle) {
+            System.out.println("Error Msg: " + sqle.getMessage());
+            System.out.println("SQLState: " + sqle.getSQLState());
+            System.out.println("SQLError: " + sqle.getErrorCode());
+            System.out.println("Rollback the transaction and quit the program");
+            System.out.println();
+            try {
+                conn.setAutoCommit(false);
+            } catch (java.sql.SQLException e) {
+                System.exit(-1);
+            }
+            try {
+                conn.rollback();
+            } catch (SQLException e) {
+
+            }
+            System.exit(1);
+        }
     }
 }
