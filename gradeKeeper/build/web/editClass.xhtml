@@ -20,7 +20,7 @@
                 <h4><h:outputText escape="false" value="#{gradeFunctions.courseInfo}"/></h4>
 
                 <br></br>
-                
+
                 <h:dataTable value="#{gradeFunctions.getClassWorkList()}" var="c"
                              styleClass="order-table"
                              headerClass="order-table-header"
@@ -43,7 +43,7 @@
                     </h:column>
 
                 </h:dataTable>
-                
+
                 <br></br>
 
                 <h:column>
@@ -52,6 +52,13 @@
                         <h:inputText id="earnedPoints" size="20" maxlength="20" value="#{gradeFunctions.earnedPointsInput}" />
                         <h:inputText id="maxPoints" size="20" maxlength="20" value="#{gradeFunctions.maxPointsInput}" />
                         <h:commandButton id="submit" value="ADD CLASSWORK" action="#{gradeFunctions.insertClassWork()}" />
+                    </h:form>
+                </h:column>
+
+                <h:column>
+                    <h:form>
+                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
+                        <h:commandButton id="submit" value="DELETE CLASSWORK" action="#{gradeFunctions.deleteClassWork()}" />
                     </h:form>
                 </h:column>
 
