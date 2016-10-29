@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
@@ -17,6 +18,33 @@
                 <h1>Edit Class</h1>
 
                 <h4><h:outputText escape="false" value="#{gradeFunctions.courseInfo}"/></h4>
+
+                <br></br>
+                
+                <h:dataTable value="#{gradeFunctions.getClassWorkList()}" var="c"
+                             styleClass="order-table"
+                             headerClass="order-table-header"
+                             rowClasses="order-table-odd-row,order-table-even-row"
+                             >
+
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                            #{c.className}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Earned Points</f:facet>
+                            #{c.earnedPoints}
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">Max Points</f:facet>
+                            #{c.maxPoints}
+                    </h:column>
+
+                </h:dataTable>
+                
+                <br></br>
 
                 <h:column>
                     <h:form>
