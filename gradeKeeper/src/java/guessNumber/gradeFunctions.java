@@ -244,7 +244,7 @@ public class gradeFunctions implements Serializable {
         System.out.println(insertQuery);
         System.out.println(createQuery);
 
-        if (newClass != null) {
+        if (!newClass.isEmpty()) {
 
             try {
                 selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
@@ -252,6 +252,44 @@ public class gradeFunctions implements Serializable {
 
                 rs = selectStmt.executeQuery(insertQuery);
                 rs = selectStmt.executeQuery(createQuery);
+
+                rs.close();
+            } catch (SQLException sqle) {
+                System.out.println("Error Msg: " + sqle.getMessage());
+                System.out.println("SQLState: " + sqle.getSQLState());
+                System.out.println("SQLError: " + sqle.getErrorCode());
+                System.out.println("Rollback the transaction and quit the program");
+                System.out.println();
+                try {
+                    conn.setAutoCommit(false);
+                } catch (java.sql.SQLException e) {
+                    System.exit(-1);
+                }
+                try {
+                    conn.rollback();
+                } catch (SQLException e) {
+
+                }
+                System.exit(1);
+            }
+        }
+    }
+
+    public void deleteClass() throws SQLException {
+        String dropQuery = "drop table " + courseNameInput;
+        String deleteQuery = "delete from courses where class_name = '" + courseNameInput + "'";
+
+        System.out.println(dropQuery);
+        System.out.println(deleteQuery);
+
+        if (!courseNameInput.isEmpty()) {
+
+            try {
+                selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                        ResultSet.CONCUR_READ_ONLY);
+
+                rs = selectStmt.executeQuery(dropQuery);
+                rs = selectStmt.executeQuery(deleteQuery);
 
                 rs.close();
             } catch (SQLException sqle) {
