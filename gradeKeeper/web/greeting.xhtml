@@ -60,7 +60,7 @@
         <h:column>
             <h:form>
                 <h:inputText id="newClass" size="20" maxlength="20" value="#{gradeFunctions.newClass}" />
-                <h:commandButton value="ADD A CLASS" action="greeting" />
+                <h:commandButton value="ADD A CLASS" action="#{gradeFunctions.createNewClass()}" />
             </h:form>
         </h:column>
 

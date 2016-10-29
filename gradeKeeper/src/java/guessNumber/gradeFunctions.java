@@ -208,10 +208,8 @@ public class gradeFunctions implements Serializable {
 
     public void insertClassWork() throws SQLException {
         String insertQuery = "insert into " + courseNameInput + " values ('"
-                + workNameInput + "', " + earnedPointsInput + ", " + maxPointsInput + ")";
-        
-        System.out.println(insertQuery);
-        
+                + courseNameInput + "', '" + workNameInput + "', " + earnedPointsInput + ", " + maxPointsInput + ")";
+
         try {
             selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                     ResultSet.CONCUR_READ_ONLY);
@@ -236,6 +234,44 @@ public class gradeFunctions implements Serializable {
 
             }
             System.exit(1);
+        }
+    }
+
+    public void createNewClass() throws SQLException {
+        String insertQuery = "insert into courses values ('" + newClass + "')";
+        String createQuery = "create table " + newClass + " (class_name varchar(25), hw_name varchar(50), earned_points number, max_points number, foreign key (class_name) references courses(class_name))";
+
+        System.out.println(insertQuery);
+        System.out.println(createQuery);
+
+        if (newClass != null) {
+
+            try {
+                selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                        ResultSet.CONCUR_READ_ONLY);
+
+                rs = selectStmt.executeQuery(insertQuery);
+                rs = selectStmt.executeQuery(createQuery);
+
+                rs.close();
+            } catch (SQLException sqle) {
+                System.out.println("Error Msg: " + sqle.getMessage());
+                System.out.println("SQLState: " + sqle.getSQLState());
+                System.out.println("SQLError: " + sqle.getErrorCode());
+                System.out.println("Rollback the transaction and quit the program");
+                System.out.println();
+                try {
+                    conn.setAutoCommit(false);
+                } catch (java.sql.SQLException e) {
+                    System.exit(-1);
+                }
+                try {
+                    conn.rollback();
+                } catch (SQLException e) {
+
+                }
+                System.exit(1);
+            }
         }
     }
 }
