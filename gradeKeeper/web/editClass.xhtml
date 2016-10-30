@@ -23,7 +23,7 @@
 
                 <br></br>
 
-                <div class="ui grid">
+                <div class="ui grid" style="margin-bottom: 15px;">
                     <div class="four wide column"></div>
                     <div class="eight wide column">
                         <h:dataTable value="#{gradeFunctions.getClassWorkList()}" var="c"
@@ -56,17 +56,29 @@
 
                 <h:column>
                     <h:form>
-                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
-                        <h:inputText id="earnedPoints" size="20" maxlength="20" value="#{gradeFunctions.earnedPointsInput}" />
-                        <h:inputText id="maxPoints" size="20" maxlength="20" value="#{gradeFunctions.maxPointsInput}" />
-                        <h:commandButton id="submit" value="ADD CLASSWORK" action="#{gradeFunctions.insertClassWork()}" />
+                        <div class="ui small input">
+                            <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
+                        </div>
+                        <div class="ui small input">
+                            <h:inputText id="earnedPoints" size="20" maxlength="20" value="#{gradeFunctions.earnedPointsInput}" />
+                        </div>
+                        <div class="ui small input">
+                            <h:inputText id="maxPoints" size="20" maxlength="20" value="#{gradeFunctions.maxPointsInput}" />
+                        </div>
+                        <div class="ui container" style="margin: 3px 0 20px 0;">
+                            <h:commandButton id="submit" value="ADD CLASSWORK" action="#{gradeFunctions.insertClassWork()}" />
+                        </div>
                     </h:form>
                 </h:column>
 
                 <h:column>
                     <h:form>
-                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
-                        <h:commandButton id="submit" value="DELETE CLASSWORK" action="#{gradeFunctions.deleteClassWork()}" />
+                        <div class="ui small input">
+                            <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
+                        </div>
+                        <div class="ui container" style="margin: 3px 0 0 0;">
+                            <h:commandButton id="submit" value="DELETE CLASSWORK" action="#{gradeFunctions.deleteClassWork()}" />
+                        </div>
                     </h:form>
                 </h:column>
 
