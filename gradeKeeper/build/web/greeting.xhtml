@@ -41,7 +41,7 @@
 
             <h:column>
                 <f:facet name="header">Grade</f:facet>
-                    100.00
+                    #{gradeFunctions.getGrade(c.courseName)}
             </h:column>
 
         </h:dataTable>

@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import oracle.jdbc.pool.OracleDataSource;
@@ -206,12 +207,38 @@ public class gradeFunctions implements Serializable {
         return list;
     }
 
+    public float getGrade(String courseName) throws SQLException {
+        String query = "select 100 * (sum(c.earned_points) / sum(c.max_points)) from " + courseName + " c";
+
+        System.out.println(query);
+
+        selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
+                ResultSet.CONCUR_READ_ONLY);
+
+        //get customer data from database
+        ResultSet result = selectStmt.executeQuery(query);
+        
+        float gradeNumber;
+        String convertedFloat;
+        String TWO_SPOTS = "##.00";
+        DecimalFormat decimalFormat = new DecimalFormat(TWO_SPOTS);
+
+        while (result.next()) {
+            gradeNumber = result.getFloat(1);
+            convertedFloat = decimalFormat.format(gradeNumber);
+            gradeNumber = Float.parseFloat(convertedFloat);
+            return gradeNumber;
+        }
+
+        return 0;
+    }
+
     public void insertClassWork() throws SQLException {
         String insertQuery = "insert into " + courseNameInput + " values ('"
                 + courseNameInput + "', '" + workNameInput + "', " + earnedPointsInput + ", " + maxPointsInput + ")";
 
         System.out.println(insertQuery);
-        
+
         try {
             selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                     ResultSet.CONCUR_READ_ONLY);
@@ -239,11 +266,11 @@ public class gradeFunctions implements Serializable {
         }
     }
 
-        public void deleteClassWork() throws SQLException {
+    public void deleteClassWork() throws SQLException {
         String deleteQuery = "delete from " + courseNameInput + " where hw_name = '" + workNameInput + "'";
 
         System.out.println(deleteQuery);
-        
+
         try {
             selectStmt = conn.createStatement(ResultSet.TYPE_FORWARD_ONLY,
                     ResultSet.CONCUR_READ_ONLY);
@@ -270,7 +297,7 @@ public class gradeFunctions implements Serializable {
             System.exit(1);
         }
     }
-    
+
     public void createNewClass() throws SQLException {
         String insertQuery = "insert into courses values ('" + newClass + "')";
         String createQuery = "create table " + newClass + " (class_name varchar(25), hw_name varchar(50), earned_points number, max_points number, foreign key (class_name) references courses(class_name))";
