@@ -32,8 +32,7 @@
                 </div>
 
             </div>
-            
-<<<<<<< HEAD
+
             <div class="ui grid">
                 <div class="four wide column"></div>
                 <div class="eight wide column">
@@ -50,43 +49,14 @@
 
                         <h:column>
                             <f:facet name="header">Grade</f:facet>
-                            100.00
+                                #{gradeFunctions.getGrade(c.courseName)}
                         </h:column>
                     </h:dataTable>
                 </div>
                 <div class="four wide column"></div>
             </div>
-=======
-            <h:column>
-                <f:facet name="header">Class</f:facet>
-                    #{c.courseName}
-            </h:column>
 
-            <h:column>
-                <f:facet name="header">Grade</f:facet>
-                    #{gradeFunctions.getGrade(c.courseName)}
-            </h:column>
-
-        </h:dataTable>
-
-        <br></br>
-
-        <h:column>
-            <h:form>
-                <h:inputText id="courseNameInput" size="20" maxlength="20" value="#{gradeFunctions.courseNameInput}" />
-                <h:commandButton id="submit" value="EDIT CLASS" action="editClass" />
-            </h:form>
-        </h:column>
-
-        <br></br>
-
-        <h:column>
-            <h:form>
-                <h:inputText id="newClass" size="20" maxlength="20" value="#{gradeFunctions.newClass}" />
-                <h:commandButton value="ADD CLASS" action="#{gradeFunctions.createNewClass()}" />
-            </h:form>
-        </h:column>
->>>>>>> refs/remotes/origin/master
+            <br></br>
 
             <div class="ui centered grid" style="margin: 20px 0;">
                 <h:column>
