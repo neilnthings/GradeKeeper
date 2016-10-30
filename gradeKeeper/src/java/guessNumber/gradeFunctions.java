@@ -229,6 +229,8 @@ public class gradeFunctions implements Serializable {
             gradeNumber = Float.parseFloat(convertedFloat);
             return gradeNumber;
         }
+        
+        result.close();
 
         return 0;
     }
