@@ -15,50 +15,70 @@
 
             <ui:define name="box">
 
-                <h1>Edit Class</h1>
+                <div style="padding-top: 20px;">
+                    <h1 style="font-family: 'Arvo', serif; font-size: 48px;">Edit Class</h1>
+                </div>
 
-                <h4><h:outputText escape="false" value="#{gradeFunctions.courseInfo}"/></h4>
+                <h1><h:outputText escape="false" value="#{gradeFunctions.courseInfo}"/></h1>
 
                 <br></br>
 
-                <h:dataTable value="#{gradeFunctions.getClassWorkList()}" var="c"
-                             styleClass="order-table"
-                             headerClass="order-table-header"
-                             rowClasses="order-table-odd-row,order-table-even-row"
-                             >
+                <div class="ui grid" style="margin-bottom: 15px;">
+                    <div class="four wide column"></div>
+                    <div class="eight wide column">
+                        <h:dataTable value="#{gradeFunctions.getClassWorkList()}" var="c"
+                                     styleClass="ui celled table"
+                                     headerClass="order-table-header"
+                                     rowClasses="order-table-odd-row,order-table-even-row"
+                                     >
 
-                    <h:column>
-                        <f:facet name="header">Work Name</f:facet>
-                            #{c.workName}
-                    </h:column>
+                            <h:column>
+                                <f:facet name="header">Work Name</f:facet>
+                                    #{c.workName}
+                            </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Earned Points</f:facet>
-                            #{c.earnedPoints}
-                    </h:column>
+                            <h:column>
+                                <f:facet name="header">Earned Points</f:facet>
+                                    #{c.earnedPoints}
+                            </h:column>
 
-                    <h:column>
-                        <f:facet name="header">Max Points</f:facet>
-                            #{c.maxPoints}
-                    </h:column>
+                            <h:column>
+                                <f:facet name="header">Max Points</f:facet>
+                                    #{c.maxPoints}
+                            </h:column>
 
-                </h:dataTable>
+                        </h:dataTable>
+                    </div>
+                    <div class="four wide column"></div>
+                </div>
 
                 <br></br>
 
                 <h:column>
                     <h:form>
-                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
-                        <h:inputText id="earnedPoints" size="20" maxlength="20" value="#{gradeFunctions.earnedPointsInput}" />
-                        <h:inputText id="maxPoints" size="20" maxlength="20" value="#{gradeFunctions.maxPointsInput}" />
-                        <h:commandButton id="submit" value="ADD CLASSWORK" action="#{gradeFunctions.insertClassWork()}" />
+                        <div class="ui small input">
+                            <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
+                        </div>
+                        <div class="ui small input">
+                            <h:inputText id="earnedPoints" size="20" maxlength="20" value="#{gradeFunctions.earnedPointsInput}" />
+                        </div>
+                        <div class="ui small input">
+                            <h:inputText id="maxPoints" size="20" maxlength="20" value="#{gradeFunctions.maxPointsInput}" />
+                        </div>
+                        <div class="ui container" style="margin: 3px 0 20px 0;">
+                            <h:commandButton id="submit" value="ADD CLASSWORK" action="#{gradeFunctions.insertClassWork()}" />
+                        </div>
                     </h:form>
                 </h:column>
 
                 <h:column>
                     <h:form>
-                        <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
-                        <h:commandButton id="submit" value="DELETE CLASSWORK" action="#{gradeFunctions.deleteClassWork()}" />
+                        <div class="ui small input">
+                            <h:inputText id="className" size="20" maxlength="20" value="#{gradeFunctions.workNameInput}" />
+                        </div>
+                        <div class="ui container" style="margin: 3px 0 0 0;">
+                            <h:commandButton id="submit" value="DELETE CLASSWORK" action="#{gradeFunctions.deleteClassWork()}" />
+                        </div>
                     </h:form>
                 </h:column>
 

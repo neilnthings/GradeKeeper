@@ -2,14 +2,12 @@
 /* styles for JSF 2.0 Introduction project */
 
 body {
-    font-family: Helvetica, sans-serif;
+    font-family: 'Roboto', serif;
     background-color: #f9f9f9;
     text-align: center;
     margin: 50px;
     color: #444;
 }
-
-h4 { margin: 10px 0 }
 
 table {
     margin: 0 auto;

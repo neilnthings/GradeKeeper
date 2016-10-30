@@ -7,17 +7,21 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="css/stylesheet.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Arvo" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.js"></script>
 
         <title><ui:insert name="title">Facelets Template</ui:insert></title>
     </h:head>
 
-    <h:body>
-        <div id="mainContainer">
-            <div id="left" class="subContainer greyBox">
-                <ui:insert name="box">Box Content Here</ui:insert>
-            </div>
-            <div id="right" class="subContainer">
-                <img src="duke.png" alt="Duke waving" />
+    <h:body style="background: url('bg2.jpg') no-repeat center center fixed; background-size: cover; font-family: 'Roboto', serif;">
+        <div style="background-color: rgba(255,255,255,0.7); margin: 12% 0;">
+            <div id="mainContainer">
+                <div>
+                    <ui:insert name="box">Box Content Here</ui:insert>
+                </div>
             </div>
         </div>
     </h:body>
