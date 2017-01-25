@@ -42,7 +42,7 @@ public class gradeFunctions implements Serializable {
      * @throws java.sql.SQLException
      */
     public gradeFunctions() throws SQLException {
-        conn = openConn("ORCL", "system", "1234surf", "localhost", "1521");
+        conn = openConn("ORCL", "system", "password", "localhost", "1521");
     }
 
     public String getCourseNameInput() {
